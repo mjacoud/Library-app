@@ -1,0 +1,258 @@
+/******RESET*****/
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/******Global*****/
+
+:root{
+--main-bg-color:#F0EEF1;
+--main-btn-bg-color:grey;
+--main-btn-txt-color:white;
+--main-bg-info:#b0c2d7f2;
+}
+
+body{
+  min-height: 100%;
+}
+
+/****Layout*****/
+
+.layout{
+  display: grid;
+  grid-template-columns: 70% 1fr;
+  grid-template-rows:100px 50px 1fr;
+  grid-template-areas:'header header'
+            'sorter painel'
+            'main painel'
+}
+
+/*******Header*******/
+
+.header{
+grid-area:header;
+display: flex;
+align-items: center;
+justify-content: space-between;
+-webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)
+}
+
+.logo{
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'roboto';
+  padding-left: 20px;
+}
+
+.login{
+  padding: 15px 30px;
+  border-radius: 20px;
+  background-color:var(--main-btn-bg-color);
+  color:var(--main-btn-txt-color);
+  border:var(--main-bg-color);
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px -18px 30px 17px rgba(0,0,0,0); 
+  box-shadow: 0px 10px 13px -7px #000000, 0px -18px 30px 17px rgba(0,0,0,0);
+
+}
+
+.login-btn{
+  padding-right: 60px;
+}
+/*****Sorter*****/
+
+.sorter{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-area: sorter;
+  padding-left: 20px;
+  background-color: var(--main-bg-color);
+}
+
+/******* Books ******/
+
+.books{
+  grid-area: main;
+  background-color: var(--main-bg-color);
+}
+
+.books-container{
+  padding:20px;
+  display: flex;
+  min-height: 83vh ;
+}
+
+.add-book{
+  width: 200px;
+  height: 200px;
+  font-size: 70px;
+  border-radius: 20px;
+  border: 0;
+  background-color: var(--main-btn-txt-color);
+  box-shadow: inset -1px 3px 8px 5px #1f87ff00, 2px 5px 16px 0px #0b325e57, 5px 5px 15px 5px rgb(0 0 0 / 0%);
+}
+
+/*******Panel*****/
+
+.info-block{
+  grid-area: painel;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding-top:50px;
+  background-color: var(--main-bg-info);
+  height: 89vh;
+}
+
+.info{
+  font-family: 'roboto';
+  font-size: 24px;
+}
+
+.colormode-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 53px;
+}
+
+.title{
+  font-size: 36px;
+  font-weight: bold;
+  font-family: 'roboto';
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--main-bg-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+.marker{
+  border:2px solid red;
+}
+
+/************MODAL*******/
+.modal{
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(0,0,0,0.5);
+  top: 0;
+  left:0;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container{
+display: flex;
+flex-direction: column;
+background-color: var(--main-bg-color);
+width: 360px;
+height: 450px;
+padding: 50px;
+border-radius: 30px;
+gap: 20px;
+}
+
+.modal-title{
+  text-align: center;
+  font-size: 24px;
+  font-family: 'roboto';
+  font-weight: bold;
+  padding-bottom: 25px;
+}
+
+.modal-block{
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-family: 'roboto';
+}
+
+.modal-checkbox{
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+    font-family: 'roboto';
+}
+
+#book-read{
+  height: 20px;
+  width: 20px;
+}
+
+.submit-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border-radius: 25px;
+  background-color: var(--main-btn-bg-color);
+  border: 0;
+  color: var(--main-bg-color);
+  font-family: 'roboto';
+  font-size: 16px;
+}

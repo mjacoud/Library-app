@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Library</title>
+    <!--------Links------->
+    <link rel="stylesheet" href="style.css" />
+
+    <!------------Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="layout">
+      <header class="header">
+        <div class="logo">Digital Library</div>
+        <div class="login-btn">
+          <button type="button" class="login">Log in</button>
+        </div>
+      </header>
+      <div class="sorter">
+        <div class="sort-container">
+          Sort by<select name="select">
+            <option value="Title">Title</option>
+            <option value="Author">Author</option>
+            <option value="Pages">Nº Pages</option>
+          </select>
+        </div>
+      </div>
+      <div class="books">
+        <div class="books-container"><button class="add-book">+</button></div>
+      </div>
+      <div class="panel">
+        <div class="info-block">
+          <div class="title">Informations</div>
+          <div class="incompleted info">Incomplete Books:</div>
+          <div class="completed info">Completed Books:</div>
+          <div class="totalpages info">Total Pages Read:</div>
+          <div class="colormode-container">
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <img src="Assets/black-sun.png" alt="" />
+            <a class="colormode">Dark Mode </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form class="modal">
+      <div class="modal-container">
+        <div class="modal-title">Add a new book</div>
+        <label class="modal-block" for="book-name"
+          >What's the book's title?<input
+            type="text"
+            name="book-name"
+            id="book-name"
+        /></label>
+        <label class="modal-block" for="book-author"
+          >What's the authors name?<input
+            type="text"
+            name="book-author"
+            id="book-author"
+        /></label>
+        <label class="modal-block" for="book-pages"
+          >How many pages are there?<input
+            type="number"
+            name="book-pages"
+            id="book-pages"
+            min="1"
+            max="5000"
+        /></label>
+        <label class="modal-checkbox" for="book-read"
+          >Have you read it?
+          <input type="checkbox" name="book-read" id="book-read"
+        /></label>
+        <button class="submit-btn" type="submit">Submit</button>
+      </div>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
