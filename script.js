@@ -3,7 +3,7 @@
 const loginBtn = document.querySelector('.login')
 const addBook = document.querySelector('.add-book')
 const colorMode = document.querySelector('.switch')
-const modal = document.querySelector('.modal')
+const modal = document.querySelector('form')
 const modal_close_btn = document.querySelector('.close-btn')
 const incomplete_book = document.querySelector('.incompleted')
 const complete_book = document.querySelector('.completed')
@@ -13,6 +13,7 @@ const book_author = document.querySelector('#book-author')
 const book_pages = document.querySelector('#book-pages')
 const book_read = document.querySelector('#book-read')
 /**********Library******** */
+const library = []
 
 let got = {
   book_name: 'Game of Thrones',
@@ -21,7 +22,6 @@ let got = {
   book_read: true
 }
 
-let library = [got]
 /************LOGIN******* */
 loginBtn.addEventListener('click', () => {
   console.log('funcinou')
@@ -47,16 +47,34 @@ window.onclick = function (e) {
 /* Add Book */
 
 modal.addEventListener('submit', e => {
-  if (book_name == '' || book_author == '' || book_pages == '') {
+  if (
+    book_name.value.length === '' ||
+    book_author.value.length === '' ||
+    book_pages.value.length === ''
+  ) {
     e.preventDefault()
+    console.log('if')
   } else {
-    new book(book_name, book_author, book_pages, book_read)
+    e.preventDefault()
+    book_library()
+    modal.style.display = 'none'
   }
 })
 
+function book_library() {
+  const newBook = new Book(
+    book_name.value,
+    book_author.value,
+    book_pages.value,
+    book_read.value
+  )
+  library.push(newBook)
+  render(newBook)
+}
+
 const grid = document.querySelector('.books-container')
 
-addBook.addEventListener('click', () => {
+function render(newBook) {
   const b_block = document.createElement('div')
   const b_name = document.createElement('div')
   const b_author = document.createElement('div')
@@ -65,40 +83,27 @@ addBook.addEventListener('click', () => {
   const b_remove = document.createElement('button')
 
   b_block.classList.add('add-book')
-  b_block.setAttribute('id', library[0])
 
-  b_name.textContent = got['book_name']
+  b_name.textContent = newBook['book_name']
   b_name.classList.add('book-title')
   grid.appendChild(b_block)
   b_block.appendChild(b_name)
-  b_author.textContent = got['book_author']
+  b_author.textContent = newBook['book_author']
   b_author.classList.add('book-author')
   b_block.appendChild(b_author)
-  b_pages.textContent = got['book_pages']
+  b_pages.textContent = newBook['book_pages']
   b_pages.classList.add('book-pages')
   b_block.appendChild(b_pages)
   b_read.classList.add('book-btn')
-  b_read.textContent = got['book_read']
+  b_read.textContent = newBook['book_read']
   b_block.appendChild(b_read)
   b_remove.textContent = 'delete'
   b_remove.classList.add('book-btn')
   b_block.appendChild(b_remove)
-
-  console.log(got['book-read'])
-  // const newBook = document.createElement('div')
-  //newBook.classList.add('grid_book')
-  // grid.appendChild(newBook)
-
-  //const newTitle = document.createElement('h2')
-  // newTitle.classList.add('title')
-  //newTitle.textContent = book_name
-  // newBook.appendChild(newTitle)
-
-  //  render()
-})
+}
 
 /*****Book Creator**** */
-class book {
+class Book {
   constructor(book_name, book_author, book_pages, book_read) {
     this.book_name = book_name
     this.book_author = book_author
@@ -108,21 +113,6 @@ class book {
 }
 
 /*Render*/
-
-function render(item) {
-  const b_block = document.createElement('div')
-  const b_name = document.createElement('div')
-  const b_author = document.createElement('div')
-  const b_pages = document.createElement('div')
-  const b_read = document.createElement('button')
-  const b_remove = document.createElement('button')
-
-  b_block.classList.add('add-book')
-  b_block.setAttribute('id', library.indexOf(item))
-
-  b_name.textContent = item.book_name
-  b_name.classList.add('book.title')
-}
 
 /*****COLOR MODE ******* */
 
