@@ -25,15 +25,7 @@
           <button type="button" class="login">Log in</button>
         </div>
       </header>
-      <div class="sorter">
-        <div class="sort-container">
-          Sort by<select name="select">
-            <option value="Title">Title</option>
-            <option value="Author">Author</option>
-            <option value="Pages">Nº Pages</option>
-          </select>
-        </div>
-      </div>
+
       <!-------------BOOKS---------->
 
       <div class="books">
@@ -50,12 +42,14 @@
           <div class="incompleted info">Incomplete Books:</div>
           <div class="completed info">Completed Books:</div>
           <div class="totalpages info">Total Pages Read:</div>
+
+          <!---------------Dark/Light Mode--------->
           <div class="colormode-container">
             <label class="switch">
-              <input type="checkbox" />
+              <input type="checkbox" id="colormode_switch" />
               <span class="slider round"></span>
             </label>
-            <img src="Assets/black-sun.png" alt="" />
+            <img class="color-icon" src="Assets/black-sun.png" alt="" />
             <a class="colormode">Dark Mode </a>
           </div>
         </div>

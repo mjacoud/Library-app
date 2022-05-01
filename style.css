@@ -13,7 +13,11 @@
 --main-btn-bg-color:grey;
 --main-btn-txt-color:white;
 --main-bg-info:#b0c2d7f2;
+--header-color:rgb(255, 255, 255);
+
+
 }
+
 
 body{
   min-height: 100%;
@@ -26,7 +30,7 @@ body{
   grid-template-columns: 70% 1fr;
   grid-template-rows:100px 50px 1fr;
   grid-template-areas:'header header'
-            'sorter painel'
+            'main painel'
             'main painel'
 }
 
@@ -38,7 +42,8 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)
+box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+background-color: var(--header-color);
 }
 
 .logo{
@@ -46,13 +51,14 @@ box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)
   font-weight: bold;
   font-family: 'roboto';
   padding-left: 20px;
+  color: var(--main-txt-color);
 }
 
 .login{
   padding: 15px 30px;
   border-radius: 20px;
   background-color:var(--main-btn-bg-color);
-  color:var(--main-btn-txt-color);
+  color:var(--main-txt-color);
   border:var(--main-bg-color);
   -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px -18px 30px 17px rgba(0,0,0,0); 
   box-shadow: 0px 10px 13px -7px #000000, 0px -18px 30px 17px rgba(0,0,0,0);
@@ -71,6 +77,7 @@ box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)
   grid-area: sorter;
   padding-left: 20px;
   background-color: var(--main-bg-color);
+  color:var(--main-txt-color)
 }
 
 /******* Books ******/
@@ -107,18 +114,21 @@ box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)
   font-size: 18px;
   font-family: 'roboto';
   font-weight: bold;
+  color:var(--main-txt-color)
 }
 
 .book-author{
   font-size: 16px;
   font-family: 'roboto';
   font-weight: 600;
+  color:var(--main-txt-color)
 }
 
 .book-pages{
   font-size: 16px;
   font-family: 'roboto';
   font-weight: 400;
+  color:var(--main-txt-color)
   
 }
 
@@ -169,6 +179,7 @@ box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)
 .info{
   font-family: 'roboto';
   font-size: 24px;
+  color: var(--main-txt-color);
 }
 
 .colormode-container{
@@ -177,12 +188,14 @@ box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)
   flex-direction: column;
   gap: 6px;
   padding-top: 53px;
+  color: var(--main-txt-color);
 }
 
 .title{
   font-size: 36px;
   font-weight: bold;
   font-family: 'roboto';
+  color:var(--main-txt-color)
 }
 
 .switch {
@@ -283,6 +296,7 @@ gap: 20px;
   height: 35px;
   width: 35px;
   cursor: pointer;
+  
 }
 
 .modal-title{
@@ -291,6 +305,7 @@ gap: 20px;
   font-family: 'roboto';
   font-weight: bold;
   padding-bottom: 25px;
+  color:var(--main-txt-color)
 }
 
 .modal-block{
@@ -298,6 +313,7 @@ gap: 20px;
   flex-direction: column;
   font-size: 20px;
   font-family: 'roboto';
+  color:var(--main-txt-color)
 }
 
 .modal-checkbox{
@@ -305,6 +321,7 @@ gap: 20px;
   justify-content: space-around;
   font-size: 20px;
     font-family: 'roboto';
+    color:var(--main-txt-color)
 }
 
 #book-read{
@@ -320,7 +337,20 @@ gap: 20px;
   border-radius: 25px;
   background-color: var(--main-btn-bg-color);
   border: 0;
-  color: var(--main-bg-color);
+  color:var(--main-txt-color);
   font-family: 'roboto';
   font-size: 16px;
+  cursor: pointer;
 }
+
+/*****COLOR MODE*****/
+
+.dark-mode{
+  --main-bg-color:#363535;
+  --main-btn-bg-color:grey;
+  --main-btn-txt-color:rgb(95, 79, 79);
+  --main-bg-info:#070808f2;
+  --main-txt-color:white;
+  --header-color:rgb(94, 92, 92);
+  }
+  

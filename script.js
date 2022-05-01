@@ -2,7 +2,8 @@
 
 const loginBtn = document.querySelector('.login')
 const addBook = document.querySelector('.add-book')
-const colorMode = document.querySelector('.switch')
+const colorMode = document.querySelector('#colormode_switch')
+
 const modal = document.querySelector('form')
 const modal_close_btn = document.querySelector('.close-btn')
 const modal_checkbox = document.querySelector('.modal-checkbox')
@@ -36,7 +37,7 @@ modal_close_btn.addEventListener('click', () => {
 })
 
 window.onclick = function (e) {
-  if (e.target == modal) {
+  if (e.etarget == modal) {
     modal.style.display = 'none' // closes the modal with clock on window
   }
 }
@@ -79,8 +80,7 @@ function book_library() {
     book_read.value
   )
   library.push(newBook)
-  render(newBook)
-  refresher()
+  render(newBook) + refresher()
 }
 
 /*Render*/
@@ -90,6 +90,7 @@ function render(newBook) {
   const b_author = document.createElement('div')
   const b_pages = document.createElement('div')
   const b_read = document.createElement('button')
+  var read_button = document.querySelector(`#read_${library.indexOf(newBook)}`)
   const b_remove = document.createElement('button')
 
   b_block.classList.add('add-book')
@@ -106,41 +107,72 @@ function render(newBook) {
   b_pages.classList.add('book-pages')
   b_block.appendChild(b_pages)
   b_read.classList.add('book-btn')
-
-  if (book_read.checked == true) {
-    b_read.textContent = 'Read'
-    b_read.classList.add('read_book')
-    b_block.appendChild(b_read)
-  } else {
-    b_read.textContent = 'Not Read'
-    b_block.appendChild(b_read)
-    b_read.classList.add('not_read_book')
-    console.log(newBook.book_read)
-  }
-
   b_remove.textContent = 'delete'
   b_remove.classList.add('book-btn')
   b_remove.setAttribute('id', `delete_${book_name.value}`)
   b_block.appendChild(b_remove)
 
   if (book_read.checked == true) {
+    b_read.textContent = 'Read'
+    b_read.classList.add('read_book')
+    b_block.appendChild(b_read)
+    b_read.setAttribute('id', `read_${library.indexOf(newBook)}`)
     read_number++
-  } else {
+    refresher()
+  } else if (book_read.checked == false) {
+    b_read.textContent = 'Not Read'
+    b_block.appendChild(b_read)
+    b_read.classList.add('not_read_book')
+    b_read.setAttribute('id', `read_${library.indexOf(newBook)}`)
     not_read_number++
+    refresher()
   }
 
   pages_number += parseInt(book_pages.value)
 
+  b_read.addEventListener('click', () => {
+    if (b_read.classList.contains('read_book')) {
+      b_read.textContent = 'Not Read'
+      b_read.classList.remove('read_book')
+      b_read.classList.add('not_read_book')
+      book_read.checked = false
+      read_number--
+      not_read_number++
+    } else if (b_read.classList.contains('not_read_book')) {
+      b_read.textContent = 'Read'
+      b_read.classList.remove('not_read_book')
+      b_read.classList.add('read_book')
+      book_read.checked = true
+      not_read_number--
+      read_number++
+    }
+
+    refresher()
+  })
+
   b_remove.addEventListener('click', () => {
     library.splice(library.indexOf(newBook), 1)
     grid.removeChild(b_block)
+    if (book_read.checked == true) {
+      read_number--
+    } else {
+      not_read_number--
+    }
+    pages_number -= book_pages.value
+    refresher()
   })
 }
 
 /*****COLOR MODE ******* */
 
 colorMode.addEventListener('click', () => {
-  console.log('funcinou-3')
+  if (colorMode.checked == true) {
+    document.body.classList.toggle('dark-mode')
+    document.querySelector('.color-icon').src = 'Assets/white-sun.png'
+  } else {
+    document.body.classList.toggle('dark-mode')
+    document.querySelector('.color-icon').src = 'Assets/black-sun.png'
+  }
 })
 
 /*******Info Side Bar**** */
@@ -155,3 +187,7 @@ function refresher() {
 var read_number = 0
 var not_read_number = 0
 var pages_number = 0
+
+/*****SORT***** */
+
+var sorted_title = library.sort()
